@@ -2,6 +2,7 @@
 
 
 #include "PawnTank.h"
+#include "Engine/World.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
@@ -12,6 +13,12 @@ APawnTank::APawnTank()
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera Player"));
 	CameraComp->SetupAttachment(SpringArm);
+
+	SpringArm->TargetArmLength = 600.f;
+	SpringArm->bEnableCameraLag = true;
+	SpringArm->bEnableCameraRotationLag = true;
+	SpringArm->CameraLagSpeed = 5.f;
+	SpringArm->CameraRotationLagSpeed = 5.f;
 }
 
 // Called when the game starts or when spawned
