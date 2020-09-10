@@ -9,6 +9,8 @@
 /**
  * 
  */
+class APawnTank;
+
 UCLASS()
 class TOONTANKS_API APawnTurret : public APawnBase
 {
@@ -16,10 +18,16 @@ class TOONTANKS_API APawnTurret : public APawnBase
 	
 
 private:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Fire", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat", meta = (AllowPrivateAccess = "true"))
 	float FireRate = 2.f;
-	void CheckFireCondition();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat", meta = (AllowPrivateAccess = "true"))
+	float FireRange = 500.f;
+
+	APawnTank* PlayerPawn;
 	FTimerHandle FireRateTimerHandle;
+	
+	void CheckFireCondition();
+	float ReturnDistanceToPlayer();
 
 protected:
 	// Called when the game starts or when spawned
