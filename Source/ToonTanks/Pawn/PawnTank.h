@@ -26,6 +26,18 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent *CameraComp;
 
+	FVector MoveDirection;
+	FQuat RotationDirection;
+
+	float MoveSpeed = 100.f;
+	float RotationSpeed = 100.f;
+
+	void Move();
+	void Rotate();
+
+	void CalculateMoveInput(float Value);
+	void CalculateRotateInput(float Value);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
