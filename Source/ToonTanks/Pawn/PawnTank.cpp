@@ -25,6 +25,7 @@ APawnTank::APawnTank()
 void APawnTank::BeginPlay()
 {
 	Super::BeginPlay();
+	PlayerControllerRef = Cast<APlayerController>(GetController());
 }
 
 // Called every frame
@@ -33,6 +34,15 @@ void APawnTank::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	Move();
 	Rotate();
+	
+	if(PlayerControllerRef)
+	{
+		FHitResult TraceHitResult;
+		PlayerControllerRef->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, TraceHitResult);
+		FVector HitLocation = TraceHitResult.ImpactPoint;
+		RotateTurretFunction(HitLocation);
+	}
+
 }
 
 // Called to bind functionality to input
@@ -42,6 +52,7 @@ void APawnTank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &APawnTank::CalculateMoveInput);
 	PlayerInputComponent->BindAxis("Turn", this, &APawnTank::CalculateRotateInput);
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APawnTank::Fire);
 
 }
 
@@ -62,4 +73,10 @@ void APawnTank::CalculateRotateInput(float Value)
 	float RotateAmount = Value * RotationSpeed * GetWorld()->DeltaTimeSeconds;
 	FRotator Rotation = FRotator(0.f, RotateAmount, 0.f);
 	RotationDirection = FQuat(Rotation);
+}
+
+void APawnTank::HandleDestruction()
+{
+	Super::HandleDestruction();
+	// Hide Player. TODO - Create new function to handle this. 
 }

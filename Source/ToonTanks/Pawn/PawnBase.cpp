@@ -28,11 +28,18 @@ void APawnBase::RotateTurretFunction(FVector LookAtTarget)
 {
 	// Update TurretMesh rotation to face towards the LookAtTarget passed in from Child Classes.
 	// TurretMesh->SetWorldRotation()...
+	
+	FVector LoookAtTargetCleaned = FVector(LookAtTarget.X, LookAtTarget.Y, TurretMesh->GetComponentLocation().Z);
+	FVector StartLocation = TurretMesh->GetComponentLocation();
+
+	FRotator TurretRotation = FVector(LoookAtTargetCleaned - StartLocation).Rotation();
+	TurretMesh->SetWorldRotation(TurretRotation);
 }
 
 void APawnBase::Fire()
 {
 	// Get ProjectileSpawnPoint Location && Rotation -> Spawn Projectile class at Location firing towards Rotation.
+	UE_LOG(LogTemp, Warning, TEXT("Fire Condition Checked"));
 }
 
 void APawnBase::HandleDestruction()

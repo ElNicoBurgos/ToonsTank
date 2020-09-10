@@ -33,12 +33,15 @@ private:
 	float MoveSpeed = 500.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
 	float RotationSpeed = 250.f;
+	APlayerController *PlayerControllerRef;
 
 	void Move();
 	void Rotate();
 
 	void CalculateMoveInput(float Value);
 	void CalculateRotateInput(float Value);
+
+	virtual void HandleDestruction() override;
 
 protected:
 	// Called when the game starts or when spawned
