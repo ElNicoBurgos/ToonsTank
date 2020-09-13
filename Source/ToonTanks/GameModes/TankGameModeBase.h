@@ -9,14 +9,22 @@
 /**
  * 
  */
+class APawnTank;
+class APawnTurret;
+
 UCLASS()
 class TOONTANKS_API ATankGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 
 private:
+
+	APawnTank* PlayerTank;
+	int32 TargetTurrets = 0;
+
 	void HandleGameStart();
 	void HandleGameOver(bool PlayerWon);
+	int32 GetTargetTurretCount();
 
 public:
 	void ActorDied(AActor* DeadActor);
@@ -28,5 +36,5 @@ protected:
 	void GameStart();
 	
 	UFUNCTION(BlueprintImplementableEvent)
-	void GameEnd(bool PlayerWon);
+	void GameOver(bool PlayerWon);
 };
