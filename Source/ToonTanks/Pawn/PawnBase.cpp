@@ -46,7 +46,6 @@ void APawnBase::Fire()
 		TempProjectile->SetOwner(this);
 	}
 	// Get ProjectileSpawnPoint Location && Rotation -> Spawn Projectile class at Location firing towards Rotation.
-	UE_LOG(LogTemp, Warning, TEXT("Fire Condition Checked"));
 }
 
 void APawnBase::HandleDestruction()
