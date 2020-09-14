@@ -30,8 +30,7 @@ void ATankGameModeBase::HandleGameStart()
 																			&APlayerControllerBase::SetPlayerEnabledState, 
 																			true);
 
-		GetWorld()->GetTimerManager().SetTimer(PlayerEnableHandle, PlayerEnableDelegate, StartDelay, false);
-		
+		GetWorld()->GetTimerManager().SetTimer(PlayerEnableHandle, PlayerEnableDelegate, StartDelay, false);	
 
 	}
 }
