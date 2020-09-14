@@ -33,7 +33,10 @@ private:
 	float MoveSpeed = 500.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
 	float RotationSpeed = 250.f;
+	
 	APlayerController *PlayerControllerRef;
+
+	bool bIsPlayerAlive = true;
 
 	void Move();
 	void Rotate();
@@ -56,4 +59,5 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void HandleDestruction() override;
+	bool GetIsPlayerAlive();
 };

@@ -34,7 +34,7 @@ void APawnTurret::CheckFireCondition()
 	if (!PlayerPawn) { return; }
 
 	// IF Player IS in range THEN FIRE!! 
-	if (ReturnDistanceToPlayer() <= FireRange) 
+	if (ReturnDistanceToPlayer() <= FireRange && PlayerPawn->GetIsPlayerAlive()) 
 	{
 		Fire();
 	}	
