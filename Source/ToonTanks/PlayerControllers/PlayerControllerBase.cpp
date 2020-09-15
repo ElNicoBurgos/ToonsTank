@@ -3,6 +3,10 @@
 
 #include "PlayerControllerBase.h"
 
+APlayerControllerBase::APlayerControllerBase() {
+	DefaultMouseCursor = EMouseCursor::Crosshairs;
+}
+
 void APlayerControllerBase::SetPlayerEnabledState(bool SetPlayerEnabled) 
 {
 	if (SetPlayerEnabled) 
